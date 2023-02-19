@@ -7,6 +7,7 @@ public class LinkList {
         last= null;
     }
 
+
     public void lastElement(){
         double current= last.getdData();
         System.out.println(current);
@@ -45,21 +46,7 @@ public class LinkList {
         return temp; 
     }
 
-    //buscar un valor en especifico
-    public Link find(double key){
-        Link current=first;
-            while(current.getdData()!= key){
-                if(current.getNext()==null){
-                    return null;
-                }
-                else{
-                    current= current.getNext();
-                }
-            }
 
-        return current;
-
-    }
 
     //insertar al final
     public void insertLast(double dd){
@@ -126,6 +113,45 @@ public class LinkList {
         return -1;
     }
 
+    public void replace(double valueB, double valueA){
+        
+        int position = findPosition(valueB);
+        int contador=0;
+
+        if(isEmpty()){
+            System.out.println("Lista vacia");
+        }else{
+            Link current = first;
+            while(current!=null){
+                if(contador==position){
+                    current.setdData(valueA);
+                    break;
+                }else{
+                    contador++;
+                    current=current.getNext();
+                }
+            }
+        }
+    }
+
+    //buscar un valor de tipo double(numero)
+    public Link find(double key){
+        Link current=first;
+            while(current.getdData()!= key){
+                if(current.getNext()==null){
+                    return null;
+                }
+                else{
+                    current= current.getNext();
+                }
+            }
+
+        return current;
+
+    }
+
+
+    //busca la posicion de ese elemento
     public int findPosition(double value){
         Link current = first;
         int contador=0;
@@ -148,6 +174,7 @@ public class LinkList {
         return contador;
     }
 
+    //recibe la posicion del elemento
     public void deleteAt(int index){
         Link current = first;
 
@@ -172,6 +199,11 @@ public class LinkList {
         current.setNext(temp);
     }
 
+
+    /*
+    recibe un valor de tipo double, manda a buscar la posicion de ese valor
+    y despues lo manda a eliminar
+    */
     public void deleteLink(double value){
         int pos = findPosition(value);
         if(pos!= -1){
