@@ -11,14 +11,10 @@ public class LinkListApp {
         lista.insertFirst(18.5);
         lista.insertFirst(23.5); //primero de la lista
         lista.displayList();
-        lista.insertLast(16.5);
-        lista.insertLast(18.5);
-        lista.displayList();
-        lista.elements();
-        //lista.deleteLast();
-        //lista.findDelete(15.5);
-        lista.displayList();
-        lista.elements();
+        lista.firstElement();
+        lista.lastElement();
+
+        /*
         
         try{
             Link temp= lista.find(15);
@@ -26,6 +22,6 @@ public class LinkListApp {
 
         }catch(NullPointerException e){
             System.out.println("No se encontro el elemento");
-        }
+        }*/
     }
 }

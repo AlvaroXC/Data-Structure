@@ -1,8 +1,21 @@
 public class LinkList {
     private Link first;
+    private Link last;
     
     public LinkList() {
         first = null;
+        last= null;
+    }
+
+    public void lastElement(){
+        double current= last.getdData();
+        System.out.println(current);
+    }
+
+
+    public void firstElement(){
+        double current = first.getdData();
+        System.out.println(current);
     }
 
     public boolean isEmpty() {
@@ -11,9 +24,15 @@ public class LinkList {
 
     public void insertFirst(double dd) { 
         Link newLink = new Link(dd);
-        newLink.setNext(first);
-        // newLink.next = first; 
-        first = newLink;
+        if(isEmpty()==true){
+            newLink.setNext(last);
+            first=newLink;
+            last= newLink;
+
+        }else{
+            newLink.setNext(first);
+            first= newLink;
+        }
     }
 
     public Link deleteFirst() {
@@ -106,28 +125,6 @@ public class LinkList {
         }
         return -1;
     }
-    
-
-    //encontrar y eliminar
-    /*
-    public Link findDelete(double key){
-        Link current = first;
-        Link temp = first;
-        boolean bandera = false;
-        
-        while(current.next != null && bandera == false) {
-            if(current.next.dData == key) bandera = true;
-            else current = current.next;
-        }
-        if(current.next == null && current.next.dData != key) System.out.println("No se encontro el dato.");
-        else{
-            temp = current.next;
-            current.next = current.next.next;
-        }
-
-        return temp; 
-    }
-    */
 
     public int findPosition(double value){
         Link current = first;
