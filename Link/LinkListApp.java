@@ -10,9 +10,8 @@ public class LinkListApp {
         lista.insertFirst(45.5);
         lista.insertFirst(18.5);
         lista.insertFirst(23.5); //primero de la lista
+        lista.replace(23.5,20.2);
         lista.displayList();
-        lista.firstElement();
-        lista.lastElement();
 
         /*
         
