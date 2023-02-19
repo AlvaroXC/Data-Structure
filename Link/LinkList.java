@@ -1,6 +1,6 @@
-public class LinkList {
-    private Link first;
-    private Link last;
+public class LinkList<T> {
+    private Link<T> first;
+    private Link<T> last;
     
     public LinkList() {
         first = null;
@@ -9,13 +9,13 @@ public class LinkList {
 
 
     public void lastElement(){
-        double current= last.getdData();
+        T current= last.getdData();
         System.out.println(current);
     }
 
 
     public void firstElement(){
-        double current = first.getdData();
+        T current = first.getdData();
         System.out.println(current);
     }
 
@@ -23,8 +23,8 @@ public class LinkList {
         return (first==null);
     }
 
-    public void insertFirst(double dd) { 
-        Link newLink = new Link(dd);
+    public void insertFirst(T dd) { 
+        Link<T> newLink = new Link<T>(dd);
         if(isEmpty()==true){
             newLink.setNext(last);
             first=newLink;
@@ -36,8 +36,8 @@ public class LinkList {
         }
     }
 
-    public Link deleteFirst() {
-        Link temp=null; 
+    public Link<T> deleteFirst() {
+        Link<T> temp=null; 
         if(!isEmpty()){
             temp = first;
             first= first.getNext();
@@ -49,10 +49,10 @@ public class LinkList {
 
 
     //insertar al final
-    public void insertLast(double dd){
+    public void insertLast(T dd){
 
-        Link newLink = new Link(dd);
-        Link current=first;
+        Link<T> newLink = new Link<T>(dd);
+        Link<T> current=first;
 
         if(!isEmpty()){
             insertFirst(dd);
@@ -71,9 +71,9 @@ public class LinkList {
     }
     
     //eliminar al final
-    public Link deleteLast(){
-        Link temp = null;
-        Link current= first;
+    public Link<T> deleteLast(){
+        Link<T> temp = null;
+        Link<T> current= first;
 
         while(current!=null){
             if(current.getNext().getNext()==null){
@@ -89,7 +89,7 @@ public class LinkList {
     }
 
     public int elements(){
-        Link current=first;
+        Link<T> current=first;
         int contador=0;
         while(current!=null){
             current= current.getNext();
@@ -99,8 +99,8 @@ public class LinkList {
         return contador;
     }
 
-    public double getElementAt(int index){
-        Link current= first;
+    public T getElementAt(int index){
+        Link<T> current= first;
         int contador=0;
         while(current!=null){
             if(contador==index){
@@ -110,18 +110,18 @@ public class LinkList {
                 current= current.getNext();
             }
         }
-        return -1;
+        throw new NotFound("No se encontro el elemento");
     }
 
     
-    public void replaceWI(double value, int index){
+    public void replaceWithIndex(T value, int index){
         int contador=0;
 
         if(isEmpty()){
             System.out.println("Lista vacia");
 
         }else{
-            Link current= first;
+            Link<T> current= first;
             while(current!= null){
                 
                 if(contador==index){
@@ -135,14 +135,14 @@ public class LinkList {
         }
     }
 
-    public void replace(double valueB, double valueA){
+    public void replace(T valueB, T valueA){
         
         if(isEmpty()){
             System.out.println("Lista vacia");
         }else{
-            Link current = first;
+            Link<T> current = first;
             while(current!=null){
-                if(current.getdData()==valueB){
+                if(current.getdData().equals(valueB)){
                     current.setdData(valueA);
                     break;
                 }else{
@@ -153,8 +153,8 @@ public class LinkList {
     }
 
     //buscar un valor de tipo double(numero)
-    public Link find(double key){
-        Link current=first;
+    public Link<T> find(T key){
+        Link<T> current=first;
             while(current.getdData()!= key){
                 if(current.getNext()==null){
                     return null;
@@ -170,8 +170,8 @@ public class LinkList {
 
 
     //busca la posicion de ese elemento
-    public int findPosition(double value){
-        Link current = first;
+    public int findPosition(T value){
+        Link<T> current = first;
         int contador=0;
 
         if(isEmpty()){
@@ -194,7 +194,7 @@ public class LinkList {
 
     //recibe la posicion del elemento
     public void deleteAt(int index){
-        Link current = first;
+        Link<T> current = first;
 
         if(isEmpty())
             return;
@@ -213,7 +213,7 @@ public class LinkList {
             return;
         }
 
-        Link temp = current.getNext().getNext();
+        Link<T> temp = current.getNext().getNext();
         current.setNext(temp);
     }
 
@@ -222,7 +222,7 @@ public class LinkList {
     recibe un valor de tipo double, manda a buscar la posicion de ese valor
     y despues lo manda a eliminar
     */
-    public void deleteLink(double value){
+    public void deleteLink(T value){
         int pos = findPosition(value);
         if(pos!= -1){
             deleteAt(pos);
@@ -242,7 +242,7 @@ public class LinkList {
 
     public void displayList() {
         System.out.print("List (first--> ");
-        Link current = first;
+        Link<T> current = first;
         while(current != null) {
             current.displayLink(); 
             current = current.getNext(); 

@@ -2,7 +2,7 @@ public class LinkListApp {
     
 
     public static void main(String[] args) {
-        LinkList lista = new LinkList();
+        LinkList<Double> lista = new LinkList<Double>();
 
         lista.insertFirst(15.5); // ultimo de la lista
         lista.insertFirst(55.5);
@@ -11,9 +11,7 @@ public class LinkListApp {
         lista.insertFirst(18.5);
         lista.insertFirst(23.5); //primero de la lista
         lista.replace(23.5,20.2);
-        lista.replaceWI(14.5, 5);
-        lista.displayList();
-        lista.cleanList();
+        lista.replaceWithIndex(14.5, 5);
         lista.displayList();
 
         /*
