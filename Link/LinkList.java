@@ -88,7 +88,7 @@ public class LinkList {
         return temp;
     }
 
-    public void elements(){
+    public int elements(){
         Link current=first;
         int contador=0;
         while(current!=null){
@@ -96,7 +96,7 @@ public class LinkList {
             contador++;
         }
 
-        System.out.println(contador);
+        return contador;
     }
 
     public double getElementAt(int index){
@@ -113,21 +113,39 @@ public class LinkList {
         return -1;
     }
 
-    public void replace(double valueB, double valueA){
-        
-        int position = findPosition(valueB);
+    
+    public void replaceWI(double value, int index){
         int contador=0;
 
+        if(isEmpty()){
+            System.out.println("Lista vacia");
+
+        }else{
+            Link current= first;
+            while(current!= null){
+                
+                if(contador==index){
+                    current.setdData(value);
+                    break;
+                }else{
+                    current= current.getNext();
+                    contador++;
+                }
+            }
+        }
+    }
+
+    public void replace(double valueB, double valueA){
+        
         if(isEmpty()){
             System.out.println("Lista vacia");
         }else{
             Link current = first;
             while(current!=null){
-                if(contador==position){
+                if(current.getdData()==valueB){
                     current.setdData(valueA);
                     break;
                 }else{
-                    contador++;
                     current=current.getNext();
                 }
             }
@@ -211,7 +229,15 @@ public class LinkList {
         }
     }
 
+    public void cleanList(){
 
+        int contador = elements();
+        for(int i=0; i<contador; i++){
+            deleteFirst();
+        }
+        System.out.println("Lista vacia");
+        
+    }
 
 
     public void displayList() {
