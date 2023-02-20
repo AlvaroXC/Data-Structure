@@ -1,12 +1,12 @@
 package DoublyLink;
 
-public class DoubleLink<T> {
+public class DoublyLink<T> {
 
     private T dData;
-    private DoubleLink<T> next;
-    private DoubleLink<T> previous;
+    private DoublyLink<T> next;
+    private DoublyLink<T> previous;
 
-    public DoubleLink(T dd) {
+    public DoublyLink(T dd) {
         dData = dd;
     }
 
@@ -14,19 +14,19 @@ public class DoubleLink<T> {
         return dData;
     }
 
-    public DoubleLink<T> getPrevious(){
+    public DoublyLink<T> getPrevious(){
         return previous;
     }
     
-    public void setPrevious(DoubleLink<T> previous) {
+    public void setPrevious(DoublyLink<T> previous) {
         this.previous = previous;
     }
     
-    public DoubleLink<T> getNext() {
+    public DoublyLink<T> getNext() {
         return next;
     }
     
-    public void setNext(DoubleLink<T> next) {
+    public void setNext(DoublyLink<T> next) {
         this.next = next;
     }
     
