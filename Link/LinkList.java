@@ -37,13 +37,13 @@ public class LinkList<T> {
     }
 
     public Link<T> deleteFirst() {
-        Link<T> temp=null; 
+        Link<T> current=null; 
         if(!isEmpty()){
-            temp = first;
+            current = first;
             first= first.getNext();
             //first = first.next;
         }
-        return temp; 
+        return current; 
     }
 
 
@@ -52,12 +52,15 @@ public class LinkList<T> {
     public void insertLast(T dd){
 
         Link<T> newLink = new Link<T>(dd);
-        Link<T> current=first;
+        Link<T> current=last;
 
-        if(!isEmpty()){
+        if(isEmpty()){
             insertFirst(dd);
 
         }else{
+            newLink.setNext(null);
+            current.setNext(newLink);
+            /* 
             while(current!=null){
 
                 if(current.getNext()==null){
@@ -67,6 +70,7 @@ public class LinkList<T> {
                     current.setNext(current.getNext());
                 }
             }
+            */
         }
     }
     
