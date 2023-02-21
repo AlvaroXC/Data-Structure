@@ -79,6 +79,43 @@ public class DoublyLinkList<T>{
         }
     }
 
+
+    public void deleteAt(int index){
+        DoublyLink<T> current = first;
+
+        if(isEmpty())
+            return;
+        if(index==0){
+            first= current.getNext();
+            return;
+        }
+
+
+        for(int i=0; current!= null && i<index-1; i++){
+            current = current.getNext();
+
+        }
+
+        if(current==null || current.getNext()==null){
+            return;
+        }
+
+        DoublyLink<T> temp = current.getNext().getNext();
+        current.setNext(temp);
+    }
+
+
+    /*
+    recibe un valor de tipo double, manda a buscar la posicion de ese valor
+    y despues lo manda a eliminar
+    */
+    public void deleteLink(T value){
+        int pos = findPosition(value);
+        if(pos!= -1){
+            deleteAt(pos);
+        }
+    }
+
     public int elements(){
         DoublyLink<T> current=first;
         int contador=0;
@@ -88,6 +125,35 @@ public class DoublyLinkList<T>{
         }
 
         return contador;
+    }
+
+    public T getElementAt(int index){
+        DoublyLink<T> current= first;
+        int contador=0;
+        while(current!=null){
+            if(contador==index){
+                return current.getdData();
+            }else{
+                contador++;
+                current= current.getNext();
+            }
+        }
+        throw new NotFound("No se encontro el elemento");
+    }
+
+    public DoublyLink<T> find(T key){
+        DoublyLink<T> current=first;
+            while(current.getdData()!= key){
+                if(current.getNext()==null){
+                    return null;
+                }
+                else{
+                    current= current.getNext();
+                }
+            }
+
+        return current;
+
     }
 
     public int findPosition(T value){
@@ -109,6 +175,44 @@ public class DoublyLinkList<T>{
         }
 
         return contador;
+    }
+
+    public void replace(T valueB, T valueA){
+        
+        if(isEmpty()){
+            System.out.println("Lista vacia");
+        }else{
+            DoublyLink<T> current = first;
+            while(current!=null){
+                if(current.getdData().equals(valueB)){
+                    current.setdData(valueA);
+                    break;
+                }else{
+                    current=current.getNext();
+                }
+            }
+        }
+    }
+
+    public void replaceWithIndex(T value, int index){
+        int contador=0;
+
+        if(isEmpty()){
+            System.out.println("Lista vacia");
+
+        }else{
+            DoublyLink<T> current= first;
+            while(current!= null){
+                
+                if(contador==index){
+                    current.setdData(value);
+                    break;
+                }else{
+                    current= current.getNext();
+                    contador++;
+                }
+            }
+        }
     }
 
     public void cleanList(){
