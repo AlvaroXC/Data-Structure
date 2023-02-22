@@ -2,8 +2,10 @@ public class LinkListApp {
     
 
     public static void main(String[] args) {
-        LinkList<Double> lista = new LinkList<Double>();
-
+        LinkList<String> lista = new LinkList<String>();
+        lista.insertFirst("Hola");
+        lista.insertFirst("Que tal");
+        /* 
         lista.insertFirst(15.5); // ultimo de la lista
         lista.insertFirst(55.5);
         lista.insertFirst(35.5);
@@ -12,8 +14,9 @@ public class LinkListApp {
         lista.insertFirst(23.5); //primero de la lista
         lista.insertAt(9.2, 3);
         lista.displayList();
-        lista.lastElement();
-
+        lista.lastElement();*/
+        lista.insertInOrderIncrease("No");
+        lista.displayList();
         /*
         
         try{
