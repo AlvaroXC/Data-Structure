@@ -1,11 +1,57 @@
 
-public class LinkList<T> {
+public class LinkList<T extends Comparable<T>> {
     private Link<T> first;
     
     public LinkList() {
         first = null;
     }
 
+    public void insertInOrderIncrease(T dd) {
+        
+        if (isEmpty()) {
+            insertFirst(dd);
+        } else {
+
+            Link<T> newLink = new Link<T>(dd);
+            Link<T> previous = null;
+            Link<T> current = first;
+            while (current != null && dd.compareTo(current.getdData()) > 0) {
+                previous = current;
+                current = current.getNext();
+            }
+            if (previous == null) {
+                newLink.setNext(first);
+                first = newLink;
+            } else {
+                previous.setNext(newLink);
+                newLink.setNext(current);
+            }
+        }
+    }
+
+    public void insertInOrderDecrease(T dd){
+
+        
+        if(isEmpty()){
+            insertFirst(dd);
+        }
+        else if(dd.compareTo(first.getdData())>0){
+            insertFirst(dd);
+        }else{
+
+            Link<T> current = first;
+            Link<T> previos = null;
+            Link<T> newLink = new Link<T>(dd);
+            
+            while(current!=null && dd.compareTo(current.getdData())<0){
+                previos=current;
+                current=current.getNext();
+            }
+            previos.setNext(newLink);
+            newLink.setNext(current);
+        }
+
+    }
 
     public void lastElement() {
         if(isEmpty()){

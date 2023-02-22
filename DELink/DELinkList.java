@@ -1,12 +1,11 @@
 package DELink;
 
-public class DELinkList {
-    
-public class LinkList<T> {
+public class DELinkList<T extends Comparable<T> >{
+
     private DELink<T> first;
     private DELink<T> last;
     
-    public LinkList() {
+    public DELinkList() {
         first = null;
         last= null;
     }
@@ -82,6 +81,53 @@ public class LinkList<T> {
         }
 
         return temp;
+    }
+
+    public void insertInOrderIncrease(T dd) {
+        
+        if (isEmpty()) {
+            insertFirst(dd);
+        } else {
+
+            DELink<T> newLink = new DELink<T>(dd);
+            DELink<T> previous = null;
+            DELink<T> current = first;
+            while (current != null && dd.compareTo(current.getdData()) > 0) {
+                previous = current;
+                current = current.getNext();
+            }
+            if (previous == null) {
+                newLink.setNext(first);
+                first = newLink;
+            } else {
+                previous.setNext(newLink);
+                newLink.setNext(current);
+            }
+        }
+    }
+
+    public void insertInOrderDecrease(T dd){
+
+        
+        if(isEmpty()){
+            insertFirst(dd);
+        }
+        else if(dd.compareTo(first.getdData())>0){
+            insertFirst(dd);
+        }else{
+
+            DELink<T> current = first;
+            DELink<T> previos = null;
+            DELink<T> newLink = new DELink<T>(dd);
+            
+            while(current!=null && dd.compareTo(current.getdData())<0){
+                previos=current;
+                current=current.getNext();
+            }
+            previos.setNext(newLink);
+            newLink.setNext(current);
+        }
+
     }
 
     public void insertAt(T dd, int index) {
@@ -268,5 +314,5 @@ public class LinkList<T> {
         System.out.println("<--last)");
     }
 
-}
+
 }
