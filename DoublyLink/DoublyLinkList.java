@@ -116,6 +116,30 @@ public class DoublyLinkList<T>{
         }
     }
 
+    public void insertAt(T dd, int index) {
+        DoublyLink<T> newLink = new DoublyLink<T>(dd);
+        if (isEmpty()) {
+            first = newLink;
+            last = newLink;
+        } else if (index == 0) {
+            newLink.setNext(first);
+            first.setPrevious(newLink);
+            first = newLink;
+        } else {
+            DoublyLink<T> current = first;
+            for (int i = 0; i < index - 1 && current.getNext() != null; i++) {
+                current = current.getNext();
+            }
+            if (current == last) {
+                last = newLink;
+            }
+            newLink.setNext(current.getNext());
+            current.getNext().setPrevious(newLink);
+            current.setNext(newLink);
+            newLink.setPrevious(current);
+        }
+    }
+
     public int elements(){
         DoublyLink<T> current=first;
         int contador=0;

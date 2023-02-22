@@ -1,33 +1,26 @@
+package DELink;
 
+public class DELinkList {
+    
 public class LinkList<T> {
-    private Link<T> first;
+    private DELink<T> first;
+    private DELink<T> last;
     
     public LinkList() {
         first = null;
+        last= null;
     }
 
 
-    public void lastElement() {
-        if(isEmpty()){
-            System.out.println("La lista está vacía");
-        }else{
-            Link<T> current = first;
-            while(current.getNext() != null){
-                current = current.getNext();
-            }
-            System.out.println(current.getdData());
-        }
+    public void lastElement(){
+        T current= last.getdData();
+        System.out.println(current);
     }
 
 
     public void firstElement(){
-        if(isEmpty()){
-            System.out.println("La lista está vacia");
-        }else{
-
-            T current = first.getdData();
-            System.out.println(current);
-        }
+        T current = first.getdData();
+        System.out.println(current);
     }
 
     public boolean isEmpty() {
@@ -35,18 +28,20 @@ public class LinkList<T> {
     }
 
     public void insertFirst(T dd) { 
-        Link<T> newLink = new Link<T>(dd);
+        DELink<T> newLink = new DELink<T>(dd);
         if(isEmpty()==true){
-            newLink.setNext(first);
+            newLink.setNext(last);
             first=newLink;
+            last= newLink;
+
         }else{
             newLink.setNext(first);
             first= newLink;
         }
     }
 
-    public Link<T> deleteFirst() {
-        Link<T> current=null; 
+    public DELink<T> deleteFirst() {
+        DELink<T> current=null; 
         if(!isEmpty()){
             current = first;
             first= first.getNext();
@@ -59,30 +54,22 @@ public class LinkList<T> {
     //insertar al final
     public void insertLast(T dd){
 
-        Link<T> newLink = new Link<T>(dd);
-        Link<T> current=first;
+        DELink<T> newLink = new DELink<T>(dd);
+        DELink<T> current=last;
 
         if(isEmpty()){
             insertFirst(dd);
 
         }else{
-            
-            while(current!=null){
-
-                if(current.getNext()==null){
-                    newLink.setNext(null);
-                    current.setNext(newLink);
-                }else{
-                    current.setNext(current.getNext());
-                }
-            }
+            newLink.setNext(null);
+            current.setNext(newLink);
         }
     }
     
     //eliminar al final
-    public Link<T> deleteLast(){
-        Link<T> temp = null;
-        Link<T> current= first;
+    public DELink<T> deleteLast(){
+        DELink<T> temp = null;
+        DELink<T> current= first;
 
         while(current!=null){
             if(current.getNext().getNext()==null){
@@ -98,11 +85,11 @@ public class LinkList<T> {
     }
 
     public void insertAt(T dd, int index) {
-        Link<T> newLink = new Link<T>(dd);
+        DELink<T> newLink = new DELink<T>(dd);
         if (index == 0) {
             insertFirst(dd);
         } else {
-            Link<T> current = first;
+            DELink<T> current = first;
             for (int i = 0; i < index - 1; i++) {
                 if (current == null) {
                     System.out.println("Index out of bounds");
@@ -116,7 +103,7 @@ public class LinkList<T> {
     }
 
     public int elements(){
-        Link<T> current=first;
+        DELink<T> current=first;
         int contador=0;
         while(current!=null){
             current= current.getNext();
@@ -127,7 +114,7 @@ public class LinkList<T> {
     }
 
     public T getElementAt(int index){
-        Link<T> current= first;
+        DELink<T> current= first;
         int contador=0;
         while(current!=null){
             if(contador==index){
@@ -148,7 +135,7 @@ public class LinkList<T> {
             System.out.println("Lista vacia");
 
         }else{
-            Link<T> current= first;
+            DELink<T> current= first;
             while(current!= null){
                 
                 if(contador==index){
@@ -167,7 +154,7 @@ public class LinkList<T> {
         if(isEmpty()){
             System.out.println("Lista vacia");
         }else{
-            Link<T> current = first;
+            DELink<T> current = first;
             while(current!=null){
                 if(current.getdData().equals(valueB)){
                     current.setdData(valueA);
@@ -180,8 +167,8 @@ public class LinkList<T> {
     }
 
     //buscar un valor de tipo double(numero)
-    public Link<T> find(T key){
-        Link<T> current=first;
+    public DELink<T> find(T key){
+        DELink<T> current=first;
             while(current.getdData()!= key){
                 if(current.getNext()==null){
                     return null;
@@ -199,7 +186,7 @@ public class LinkList<T> {
 
     //busca la posicion de ese elemento
     public int findPosition(T value){
-        Link<T> current = first;
+        DELink<T> current = first;
         int contador=0;
 
         if(isEmpty()){
@@ -222,7 +209,7 @@ public class LinkList<T> {
 
     //recibe la posicion del elemento
     public void deleteAt(int index){
-        Link<T> current = first;
+        DELink<T> current = first;
 
         if(isEmpty())
             return;
@@ -241,7 +228,7 @@ public class LinkList<T> {
             return;
         }
 
-        Link<T> temp = current.getNext().getNext();
+        DELink<T> temp = current.getNext().getNext();
         current.setNext(temp);
     }
 
@@ -260,14 +247,20 @@ public class LinkList<T> {
     }
 
     public void cleanList(){
-        first=null;
+
+        int contador = elements();
+        for(int i=0; i<contador; i++){
+            deleteFirst();
+        }
+        System.out.println("Lista vacia");
+        
     }
 
 
 
     public void displayList() {
         System.out.print("List (first--> ");
-        Link<T> current = first;
+        DELink<T> current = first;
         while(current != null) {
             current.displayLink(); 
             current = current.getNext(); 
@@ -275,4 +268,5 @@ public class LinkList<T> {
         System.out.println("<--last)");
     }
 
+}
 }
