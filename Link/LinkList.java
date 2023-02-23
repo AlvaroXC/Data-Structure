@@ -42,7 +42,6 @@ public class LinkList<T extends Comparable<T>> {
             Link<T> current = first;
             Link<T> previos = null;
             Link<T> newLink = new Link<T>(dd);
-            
             while(current!=null && dd.compareTo(current.getdData())<0){
                 previos=current;
                 current=current.getNext();

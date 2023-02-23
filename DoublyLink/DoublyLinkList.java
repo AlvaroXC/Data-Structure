@@ -1,6 +1,6 @@
 package DoublyLink;
 
-public class DoublyLinkList<T>{
+public class DoublyLinkList<T extends Comparable<T>>{
 
     private DoublyLink<T> first;
     private DoublyLink<T> last;
@@ -24,17 +24,16 @@ public class DoublyLinkList<T>{
         return (first==null);
     }
 
-    public void insertFirst(T dd) { 
+    public void insertFirst(T dd) {
         DoublyLink<T> newLink = new DoublyLink<T>(dd);
-        if(isEmpty()==true){
+        if (isEmpty() == true) {
             newLink.setNext(last);
-            first=newLink;
-            last= newLink;
-
-        }else{
+            first = newLink;
+            last = newLink;
+        } else {
             first.setPrevious(newLink);
-            newLink.setNext(first);//ok
-            first= newLink;//ok
+            newLink.setNext(first);
+            first = newLink;
         }
     }
 
@@ -62,6 +61,55 @@ public class DoublyLinkList<T>{
         }
 
         return current;
+    }
+
+    public void insertInOrderDecrease(T dd){
+        DoublyLink<T> newLink = new DoublyLink<T>(dd);
+        DoublyLink<T> current= first;
+        
+        if(isEmpty()){
+            insertFirst(dd);
+        }else{
+            while(current!=null && dd.compareTo(current.getdData())<0){
+                current=current.getNext();
+            }
+            if(current==null){
+                insertLast(dd);
+            }
+            else if(current.getPrevious()==null){
+                insertFirst(dd);
+            }
+            else{
+                current.getPrevious().setNext(newLink);
+                newLink.setPrevious(current.getPrevious());
+                newLink.setNext(current);
+                current.setPrevious(newLink);
+            }
+        }
+    
+    
+    
+    
+    }
+
+
+    public void insertInOrderIncrease(T dd) {
+        DoublyLink<T> newLink = new DoublyLink<T>(dd);
+        DoublyLink<T> current = first;
+
+        while (current != null && dd.compareTo(current.getdData()) >= 0) {
+            current = current.getNext();
+        }
+        if (current == null) {
+            insertLast(dd);
+        } else if (current.getPrevious() == null) {
+            insertFirst(dd);
+        } else {
+            current.getPrevious().setNext(newLink);
+            newLink.setPrevious(current.getPrevious());
+            newLink.setNext(current);
+            current.setPrevious(newLink);
+        }
     }
 
     public void insertLast(T dd){
