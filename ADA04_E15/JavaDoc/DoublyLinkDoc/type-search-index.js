@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"DoublyLink","l":"DoublyLink"},{"p":"DoublyLink","l":"DoublyLinkApp"},{"p":"DoublyLink","l":"DoublyLinkList"},{"p":"DoublyLink","l":"NotFound"}];updateSearchResults();
